@@ -20,7 +20,7 @@ app.get('/', function(req, res) {
 app.get('/detail', function(req, res) {
     res.render('detail', req.query);
 });
-app.post('/notification', function(req, res) {
+app.post('/ipn', function(req, res) {
     console.log(req.body)
     res.status(200).json({})
 })
@@ -75,9 +75,10 @@ app.post("/create_preference", (req, res) => {
                 id: "amex"
             }],
             installments: 6
-        }
-        // notification_url: "https://www.your-site.com/ipn",
+        },
+        notification_url: "https://checkout-pro-mercadopago.herokuapp.com/ipn",
     };
+    console.log(preference);
     mercadopago.preferences.create(preference)
         .then(function(response) {
             res.json({ id: response.body.id })
