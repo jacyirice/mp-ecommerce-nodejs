@@ -22,8 +22,6 @@ document.getElementById("form-checkout").addEventListener("submit", function(e) 
             }
         },
     };
-    console.log($('#product-unit').val(), );
-    console.log(document.getElementById("product-unit"));
     fetch("/create_preference", {
             method: "POST",
             headers: {
@@ -35,8 +33,6 @@ document.getElementById("form-checkout").addEventListener("submit", function(e) 
             return response.json();
         })
         .then(function(preference) {
-            console.log(preference)
-            console.log(preference.id)
             createCheckoutButton(preference.id);
             $(".shopping-cart").fadeOut(500);
             setTimeout(() => {

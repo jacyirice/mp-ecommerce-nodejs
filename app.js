@@ -21,7 +21,9 @@ app.get('/detail', function(req, res) {
     res.render('detail', req.query);
 });
 app.post('/ipn', function(req, res) {
+    console.log('INICIO NOTIFICACAO');
     console.log(req.body)
+    console.log('FIM NOTIFICACAO');
     res.status(200).json({})
 })
 app.get('/checkout', function(req, res) {
@@ -78,7 +80,9 @@ app.post("/create_preference", (req, res) => {
         },
         notification_url: "https://checkout-pro-mercadopago.herokuapp.com/ipn",
     };
+    console.log('INICIO PREFERENCE');
     console.log(preference);
+    console.log('FIM PREFERENCE');
     mercadopago.preferences.create(preference)
         .then(function(response) {
             res.json({ id: response.body.id })
