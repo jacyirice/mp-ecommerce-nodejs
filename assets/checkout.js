@@ -39,6 +39,9 @@ document.getElementById("form-checkout").addEventListener("submit", function(e) 
             console.log(preference.id)
             createCheckoutButton(preference.id);
             $(".shopping-cart").fadeOut(500);
+            setTimeout(() => {
+                $("#modal-checkout").show(500).fadeIn();
+            }, 500);
 
         })
         .catch(function(error) {
@@ -63,3 +66,4 @@ function createCheckoutButton(preference) {
     document.getElementById("button-checkout").innerHTML = '';
     document.querySelector("#button-checkout").appendChild(script);
 }
+$("#modal-checkout").fadeOut(500);
