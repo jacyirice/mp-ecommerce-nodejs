@@ -43,6 +43,7 @@ app.get('/payment/success', function(req, res) {
 app.post("/create_preference", (req, res) => {
     let preference = {
         items: [{
+            id: req.body.id,
             title: req.body.title,
             quantity: Number(req.body.quantity),
             description: req.body.description,
@@ -67,9 +68,9 @@ app.post("/create_preference", (req, res) => {
             }
         },
         back_urls: {
-            "success": "http://localhost:3000/payment/success",
-            "failure": "http://localhost:3000/payment/fail",
-            "pending": "http://localhost:3000/payment/in-process"
+            success: "https://checkout-pro-mercadopago.herokuapp.com/payment/success",
+            failure: "https://checkout-pro-mercadopago.herokuapp.com/payment/fail",
+            pending: "https://checkout-pro-mercadopago.herokuapp.com/payment/in-process"
         },
         auto_return: 'approved',
         payment_methods: {
@@ -85,6 +86,7 @@ app.post("/create_preference", (req, res) => {
     console.log('FIM PREFERENCE');
     mercadopago.preferences.create(preference)
         .then(function(response) {
+            console.log('Preferência ' + response.body.id)
             res.json({ id: response.body.id })
         }).catch(function(error) {
             console.log(error);

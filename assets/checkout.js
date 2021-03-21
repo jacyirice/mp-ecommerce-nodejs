@@ -2,6 +2,7 @@
 document.getElementById("form-checkout").addEventListener("submit", function(e) {
     $('#checkout-btn').attr("disabled", true);
     var orderData = {
+        id: document.getElementById("product-id").value,
         quantity: document.getElementById("product-unit").value,
         title: document.getElementById("product-title").value,
         description: document.getElementById("product-description").value,
